@@ -176,34 +176,29 @@ namespace AdvancedTooltip
 
             x += nextLine.X;
 
-            if (true)
-            // if (item.AffixType != ModType.Unique)
+            if (item.TotalTiers > 0)
             {
-                if (item.TotalTiers > 0)
+                affix = $" T{item.Tier}({item.TotalTiers}) ";
+
+                switch (item.AffixType)
                 {
-                    affix = $" T{item.Tier}({item.TotalTiers}) ";
+                    case ModType.Prefix:
+                        nextLine = Graphics.DrawText(affix, position.Translate(x), settings.PrefixColor);
+                        if (!TColors.TryGetValue(item.Tier, out TColor)) TColor = settings.PrefixColor;
 
-                    switch (item.AffixType)
-                    {
-                        case ModType.Prefix:
-                            nextLine = Graphics.DrawText(affix, position.Translate(x), settings.PrefixColor);
-                            if (!TColors.TryGetValue(item.Tier, out TColor)) TColor = settings.PrefixColor;
+                        break;
+                    case ModType.Suffix:
+                        nextLine = Graphics.DrawText(affix, position.Translate(x), settings.SuffixColor);
+                        if (!TColors.TryGetValue(item.Tier, out TColor)) TColor = settings.SuffixColor;
 
-                            break;
-                        case ModType.Suffix:
-                            nextLine = Graphics.DrawText(affix, position.Translate(x), settings.SuffixColor);
-                            if (!TColors.TryGetValue(item.Tier, out TColor)) TColor = settings.SuffixColor;
-
-                            break;
-                    }
+                        break;
                 }
-
-                var textSize = Graphics.DrawText(item.AffixText, position.Translate(x + nextLine.X), TColor);
-                position.Y += textSize.Y;
             }
+            
+            var textSize = Graphics.DrawText(item.AffixText, position.Translate(x + nextLine.X), TColor);
+            position.Y += textSize.Y;
 
-            {
-                for (var i = 0; i < 4; i++)
+            for (var i = 0; i < 4; i++)
                 {
                     var range = item.Record.StatRange[i];
                     if (range.Min == 0 && range.Max == 0) continue;
@@ -231,10 +226,7 @@ namespace AdvancedTooltip
                     position.Y += txSize.Y;
                 }
 
-                return Math.Abs(position.Y - oldPosition.Y) > EPSILON ? position.Translate(0, MARGIN_BOTTOM) : oldPosition;
-            }
-
-            return position;
+            return Math.Abs(position.Y - oldPosition.Y) > EPSILON ? position.Translate(0, MARGIN_BOTTOM) : oldPosition;
         }
 
         private void DrawWeaponDps(RectangleF clientRect)
