@@ -177,6 +177,7 @@ namespace AdvancedTooltip
             x += nextLine.X;
 
             if (true)
+            // if (item.AffixType != ModType.Unique)
             {
                 if (item.TotalTiers > 0)
                 {
