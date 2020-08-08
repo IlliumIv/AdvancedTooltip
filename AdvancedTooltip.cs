@@ -139,18 +139,18 @@ namespace AdvancedTooltip
                 var startPosition = tooltipRect.TopLeft.TranslateToNum(20, 56);
                 var t1 = mods.Count(item => item.CouldHaveTiers() && item.Tier == 1);
                 Graphics.DrawText(string.Concat(Enumerable.Repeat(symbol, t1)), startPosition,
-                    Settings.ItemMods.T1Color, "DFPT_B5_POE:15");
+                    Settings.ItemMods.T1Color, "DFPT_B5_POE:14");
 
                 var t2 = mods.Count(item => item.CouldHaveTiers() && item.Tier == 2);
 
                 Graphics.DrawText(string.Concat(Enumerable.Repeat(symbol, t2)), startPosition.Translate(t1 * 14),
-                    Settings.ItemMods.T2Color,"DFPT_B5_POE:15");
+                    Settings.ItemMods.T2Color,"DFPT_B5_POE:14");
 
                 var t3 = mods.Count(item => item.CouldHaveTiers() && item.Tier == 3);
 
                 Graphics.DrawText(string.Concat(Enumerable.Repeat(symbol, t3)),
                     startPosition.Translate(t1 * 14 + t2 * 14),
-                    Settings.ItemMods.T3Color, "DFPT_B5_POE:15");
+                    Settings.ItemMods.T3Color, "DFPT_B5_POE:14");
             }
 
             if (Settings.ItemLevel.Enable.Value)
