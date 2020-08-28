@@ -18,10 +18,10 @@ namespace AdvancedTooltip
     public class AdvancedTooltip : BaseSettingsPlugin<AdvancedTooltipSettings>
     {
         private string affix;
-        private bool canRender;
+        // private bool canRender;
         private Entity itemEntity;
         private List<ModValue> mods = new List<ModValue>();
-        private long ModsHash;
+        // private long ModsHash;
         private Vector2N nextLine = Vector2N.Zero;
         private readonly string symbol = " *";
         private Color TColor;
@@ -53,6 +53,7 @@ namespace AdvancedTooltip
             return true;
         }
 
+        /*
         public override Job Tick()
         {
             canRender = true;
@@ -65,6 +66,7 @@ namespace AdvancedTooltip
 
             return null;
         }
+        */
 
         public override void Render()
         {
@@ -192,7 +194,7 @@ namespace AdvancedTooltip
         private Vector2 DrawMod(ModValue item, Vector2 position)
         {
             const float EPSILON = 0.001f;
-            const int MARGIN_BOTTOM = 4, MARGIN_LEFT = 50;
+            const int MARGIN_BOTTOM = 4; // , MARGIN_LEFT = 50;
             var oldPosition = position;
             var settings = Settings.ItemMods;
             var x = 0f;
@@ -261,12 +263,12 @@ namespace AdvancedTooltip
                     {
                         txSize = Graphics.DrawText(statText, position.Translate(x + 30), Color.Gainsboro,
                             FontAlign.Right);
-                        var drawText = Graphics.DrawText(line2, position.Translate(x + 40), Color.Gainsboro);
+                        var _ = Graphics.DrawText(line2, position.Translate(x + 40), Color.Gainsboro);
                     }
                     else
                     {
                         txSize = Graphics.DrawText(statText, position.Translate(x), Color.Gainsboro, FontAlign.Right);
-                        var drawText = Graphics.DrawText(line2, position.Translate(+40), Color.Gainsboro);
+                        var _ = Graphics.DrawText(line2, position.Translate(+40), Color.Gainsboro);
                     }
 
                     position.Y += txSize.Y;

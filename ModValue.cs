@@ -39,14 +39,10 @@ namespace AdvancedTooltip
                     if (!keyrcd.SequenceEqual(keyRcd))
                         continue;
 
-                    int baseChance;
-
-                    if (!tmp.TagChances.TryGetValue(baseClassName, out baseChance))
+                    if (!tmp.TagChances.TryGetValue(baseClassName, out int baseChance))
                         baseChance = -1;
 
-                    int defaultChance;
-
-                    if (!tmp.TagChances.TryGetValue("default", out defaultChance))
+                    if (!tmp.TagChances.TryGetValue("default", out int defaultChance))
                         defaultChance = 0;
 
                     var tagChance = -1;

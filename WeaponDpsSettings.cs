@@ -32,7 +32,9 @@ namespace AdvancedTooltip
         public ColorNode DmgColdColor { get; set; }
         public ColorNode DmgLightningColor { get; set; }
         public ColorNode DmgChaosColor { get; set; }
+#pragma warning disable IDE1006 // Naming Styles
         public ColorNode pDamageColor { get; set; }
         public ColorNode eDamageColor { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
     }
 }
