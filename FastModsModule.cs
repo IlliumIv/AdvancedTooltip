@@ -21,8 +21,7 @@ namespace AdvancedTooltip
         private long _lastItemAddress;
         private Element _regularModsElement;
         private List<ModTierInfo> _mods = new List<ModTierInfo>();
-        private Element _tooltip;
-        private Regex _modTypeRegex = new Regex(@"\<rgb\(\d+\,\d+\,\d+\)\>\{([\w ]+)\}");
+        private readonly Regex _modTypeRegex = new Regex(@"\<rgb\(\d+\,\d+\,\d+\)\>\{([\w ]+)\}");
 
         public FastModsModule(Graphics graphics, ItemModsSettings modsSettings)
         {
@@ -90,7 +89,7 @@ namespace AdvancedTooltip
                     i += modTierInfo.ModLines - 1;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //ignored   
             }
@@ -98,7 +97,6 @@ namespace AdvancedTooltip
 
         private void InitializeElements(Element tooltip)
         {
-            _tooltip = tooltip;
             _regularModsElement = null;
 
             var modsRoot = tooltip.GetChildAtIndex(1);
