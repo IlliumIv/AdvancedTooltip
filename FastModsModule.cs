@@ -18,15 +18,17 @@ namespace AdvancedTooltip
     {
         private readonly Graphics _graphics;
         private readonly ItemModsSettings _modsSettings;
+        private readonly AdvancedTooltipSettings _settings;
         private long _lastItemAddress;
         private Element _regularModsElement;
         private List<ModTierInfo> _mods = new List<ModTierInfo>();
         private readonly Regex _modTypeRegex = new Regex(@"\<rgb\(\d+\,\d+\,\d+\)\>\{([\w ]+)\}");
 
-        public FastModsModule(Graphics graphics, ItemModsSettings modsSettings)
+        public FastModsModule(Graphics graphics, ItemModsSettings modsSettings, AdvancedTooltipSettings settings)
         {
             _graphics = graphics;
             _modsSettings = modsSettings;
+            _settings = settings;
         }
 
         public void DrawUiHoverFastMods(Element tooltip, Vector2 fixDrawPos)
@@ -155,7 +157,7 @@ namespace AdvancedTooltip
 
                     if (!isPrefix && !isSuffix)
                     {
-                        DebugWindow.LogMsg($"Cannot extract Affix type from mod text: {extendedModsLine}", 4);
+                        if (_settings.Debug) DebugWindow.LogMsg($"Cannot extract Affix type from mod text: {extendedModsLine}", 4);
                         return;
                     }
 
@@ -318,7 +320,7 @@ namespace AdvancedTooltip
 
                 if (!found)
                 {
-                    DebugWindow.LogMsg($"Cannot extract mod from parsed mods: {modFixed}", 4);
+                    if (_settings.Debug) DebugWindow.LogMsg($"Cannot extract mod from parsed mods: {modFixed}", 4);
                     var modTierInfo = new ModTierInfo("?", Color.Gray);
                     modTierInfos.Add(modTierInfo);
                     //return;

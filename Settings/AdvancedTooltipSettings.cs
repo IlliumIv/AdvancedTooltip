@@ -9,6 +9,7 @@ namespace AdvancedTooltip.Settings
         public AdvancedTooltipSettings()
         {
             Enable = new ToggleNode(false);
+            Debug = new ToggleNode(false);
             ItemLevel = new ItemLevelSettings();
             ItemMods = new ItemModsSettings();
             WeaponDps = new WeaponDpsSettings();
@@ -21,5 +22,6 @@ namespace AdvancedTooltip.Settings
         [Menu("Weapon Dps", 30)]
         public WeaponDpsSettings WeaponDps { get; set; }
         public ToggleNode Enable { get; set; }
+        public ToggleNode Debug { get; set; }
     }
 }

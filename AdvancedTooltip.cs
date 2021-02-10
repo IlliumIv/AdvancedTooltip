@@ -36,7 +36,7 @@ namespace AdvancedTooltip
 
         public override bool Initialise()
         {
-            _fastMods = new FastModsModule(Graphics, Settings.ItemMods);
+            _fastMods = new FastModsModule(Graphics, Settings.ItemMods, Settings);
             TColors = new Dictionary<int, Color>
             {
                 {1, Settings.ItemMods.T1Color}, {2, Settings.ItemMods.T2Color}, {3, Settings.ItemMods.T3Color}
