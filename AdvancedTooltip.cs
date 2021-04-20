@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms;
 using AdvancedTooltip.Settings;
 using ExileCore;
 using ExileCore.PoEMemory;
@@ -27,6 +26,7 @@ namespace AdvancedTooltip
         private Color TColor;
         private Dictionary<int, Color> TColors;
         private FastModsModule _fastMods;
+        private bool _drawTooltips = true;
 
         public override void OnLoad()
         {
@@ -42,13 +42,7 @@ namespace AdvancedTooltip
                 {1, Settings.ItemMods.T1Color}, {2, Settings.ItemMods.T2Color}, {3, Settings.ItemMods.T3Color}
             };
 
-            Input.RegisterKey(Keys.F9);
-
-            Input.ReleaseKey += (sender, keys) =>
-            {
-                if (keys == Keys.F9) Settings.ItemMods.Enable.Value = !Settings.ItemMods.Enable.Value;
-            };
-
+            Input.RegisterKey(Settings.DrawTooltips.Value);
 
             return true;
         }
@@ -70,8 +64,14 @@ namespace AdvancedTooltip
 
         public override void Render()
         {
-            DrawUiHover();
-            DrawOnGround();
+            if (Settings.DrawTooltips.PressedOnce())
+                _drawTooltips = !_drawTooltips;
+
+            if (_drawTooltips)
+            {
+                DrawUiHover();
+                DrawOnGround();
+            }
         }
 
         private void DrawOnGround()
